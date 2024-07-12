@@ -1,11 +1,15 @@
+.navContainer {
+  background-color: #00695c;
+  color: #fff;
+  width: 100%;
+}
+
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem;
   /* margin: 2px 0 2rem 0; */
-  background-color: #00695c;
-  color: #fff;
 }
 
 .navbar h2 {
