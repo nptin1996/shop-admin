@@ -1,25 +1,24 @@
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
+import classes from "./NavBar.module.css";
 function NavBar() {
   return (
-    <div>
-      <h2>
-        <NavLink>ADMIN SHOP</NavLink>
-      </h2>
+    <div className={classes.navbar}>
+      <h2>ADMIN SHOP</h2>
       <ul>
         <li>
-          <NavLink>Home</NavLink>
+          <a>Home</a>
         </li>
         <li>
-          <NavLink>Products</NavLink>
+          <a>Product</a>
         </li>
         <li>
-          <NavLink>Chats</NavLink>
+          <a>Chat</a>
         </li>
         <li>
-          <NavLink>Login</NavLink>
+          <a>Login</a>
         </li>
         <li>
-          <NavLink>Logout</NavLink>
+          <a>Logout</a>
         </li>
       </ul>
     </div>

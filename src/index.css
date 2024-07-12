@@ -2,15 +2,20 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-style: italic;
+  font-size: 16px;
+  background-color: #fff;
 }
 
 .container {
   width: 1320px;
   margin: auto;
+  border: 1px solid #33333325;
 }
