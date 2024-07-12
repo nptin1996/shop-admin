@@ -1,31 +1,31 @@
 .navContainer {
   background-color: #00695c;
   color: #fff;
-  width: 100%;
 }
 
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem;
-  /* margin: 2px 0 2rem 0; */
+  padding: 1rem;
 }
 
 .navbar h2 {
+  font-size: 20px;
   border: double #fff;
-  padding: 1rem;
-  font-weight: 400;
+  padding: 12px;
+  font-weight: 500;
 }
 
 .navbar ul {
   list-style: none;
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 .navbar a {
   text-decoration: none;
   font-weight: 400;
+  color: #fff;
 }
 .navbar a:hover {
   cursor: pointer;

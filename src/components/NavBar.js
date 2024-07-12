@@ -1,4 +1,4 @@
-// import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import classes from "./NavBar.module.css";
 function NavBar() {
   return (
@@ -7,19 +7,19 @@ function NavBar() {
         <h2>ADMIN SHOP</h2>
         <ul>
           <li>
-            <a>Home</a>
+            <NavLink>Home</NavLink>
           </li>
           <li>
-            <a>Product</a>
+            <NavLink>Product</NavLink>
           </li>
           <li>
-            <a>Chat</a>
+            <NavLink>Chat</NavLink>
           </li>
           <li>
-            <a>Login</a>
+            <NavLink>Login</NavLink>
           </li>
           <li>
-            <a>Logout</a>
+            <NavLink>Logout</NavLink>
           </li>
         </ul>
       </nav>

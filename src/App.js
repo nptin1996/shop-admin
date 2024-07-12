@@ -1,11 +1,17 @@
-import NavBar from "./components/NavBar";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import Root from "./pages/Root";
+import Login from "./pages/Login";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+  },
+  { path: "/login", element: <Login /> },
+]);
 function App() {
-  return (
-    <div className="container">
-      <NavBar />
-      <p>{process.env.REACT_APP_API_URL}</p>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
