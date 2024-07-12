@@ -1,14 +1,21 @@
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import classes from "./AuthFrom.module.css";
 function AuthForm(props) {
+  const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const fd = new FormData(e.target);
-    const email = fd.get("email");
-    const password = fd.get("password");
+    const dataSubmit = Object.fromEntries(fd.entries());
+    console.log(dataSubmit);
+    try {
+      const url = process.env.REACT_APP_API_URL + "auth/login-admin";
+    } catch (err) {
+      console.log(err);
+    }
 
     // submit sign in
   };
@@ -34,7 +41,7 @@ function AuthForm(props) {
             </li>
           </ul>
           <button>Submit</button>
-          {/* <p className={classes.authMsg}>message</p> */}
+          {msg && <p className={classes.authMsg}>{msg}</p>}
         </form>
       </div>
     </>
