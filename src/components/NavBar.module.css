@@ -27,6 +27,16 @@
   font-weight: 400;
   color: #fff;
 }
+.navbar button {
+  font-style: italic;
+  color: #fff;
+}
+
+.navbar button:hover {
+  cursor: pointer;
+  color: #ffeb3b;
+}
+
 .navbar a:hover {
   cursor: pointer;
   color: #ffeb3b;

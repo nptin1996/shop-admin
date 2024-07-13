@@ -1,23 +1,49 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../store/context";
 import NavBar from "./NavBar";
-import classes from "./AuthFrom.module.css";
+import classes from "./AuthForm.module.css";
 function AuthForm(props) {
-  const [msg, setMsg] = useState("sadasdasdasd");
+  const { login } = useContext(Context);
+  const [msg, setMsg] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMsg("");
+    setLoading(true);
     const fd = new FormData(e.target);
     const dataSubmit = Object.fromEntries(fd.entries());
     console.log(dataSubmit);
     try {
-      const url = process.env.REACT_APP_API_URL + "auth/login-admin";
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/auth/login?mode=admin`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "POST",
+          credentials: "include",
+          body: JSON.stringify(dataSubmit),
+        }
+      );
+      const dataRes = await res.json();
+      console.log(dataRes);
+      if (res.ok) {
+        login(dataRes);
+        return navigate("/");
+      }
+      if (dataRes.message) {
+        setLoading(false);
+        return setMsg(dataRes.message);
+      }
+      throw new Error();
     } catch (err) {
       console.log(err);
+      setLoading(false);
+      setMsg("Login Failed!");
     }
-
-    // submit sign in
   };
 
   return (
@@ -25,7 +51,7 @@ function AuthForm(props) {
       <NavBar />
       <div className="container">
         <form className={classes.authForm} onSubmit={handleSubmit}>
-          {/* <div class={classes.loader}></div> */}
+          {loading && <div class={classes.loader}></div>}
           {msg && <p className={classes.authMsg}>{msg}</p>}
           <h3>Login</h3>
           <ul>
