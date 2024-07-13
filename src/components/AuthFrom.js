@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import classes from "./AuthFrom.module.css";
 function AuthForm(props) {
-  const [msg, setMsg] = useState("");
+  const [msg, setMsg] = useState("sadasdasdasd");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -25,6 +25,8 @@ function AuthForm(props) {
       <NavBar />
       <div className="container">
         <form className={classes.authForm} onSubmit={handleSubmit}>
+          {/* <div class={classes.loader}></div> */}
+          {msg && <p className={classes.authMsg}>{msg}</p>}
           <h3>Login</h3>
           <ul>
             <li>
@@ -41,7 +43,6 @@ function AuthForm(props) {
             </li>
           </ul>
           <button>Submit</button>
-          {msg && <p className={classes.authMsg}>{msg}</p>}
         </form>
       </div>
     </>
