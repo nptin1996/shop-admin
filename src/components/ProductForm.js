@@ -7,9 +7,11 @@ function ProductForm({ type = "Add", data }) {
   const [images, setImages] = useState([]);
   const [errMsg, setErrMsg] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const { logout } = useContext(Context);
+  const navigate = useNavigate();
 
   const handlePickFiles = (e) => {
-    setImages(e.target.files);
+    setImages(Array.from(e.target.files));
   };
 
   const handleSubmit = async (e) => {
@@ -21,7 +23,8 @@ function ProductForm({ type = "Add", data }) {
         return setErrMsg("Images không thể trống, chọn tối đa 4.");
       }
       const fd = new FormData(e.target);
-      fd.append("images", images);
+      images.forEach((i) => fd.append("images", i));
+
       const res = await fetch(
         `${process.env.REACT_APP_API_URL}/product${
           type === "Edit" ? `/${data._id}` : ""
@@ -32,16 +35,32 @@ function ProductForm({ type = "Add", data }) {
           credentials: "include",
         }
       );
-    } catch (err) {}
+
+      if (res.ok) return navigate("/product");
+
+      if (res.status === 401 || res.status === 403) {
+        logout();
+        alert("Đăng nhập và thử lại!");
+        return navigate("/login");
+      }
+      const data = await res.json();
+      if (data.message) {
+        return setErrMsg(data.message);
+      }
+      throw new Error();
+    } catch (err) {
+      setErrMsg("Create product failed.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
-  console.log(images);
   return (
     <div className={`card ${classes.containerProduct}`}>
       <h3>{type} Product</h3>
       <form className={classes.form} onSubmit={handleSubmit}>
         <div>
-          <label>Product Name</label>
+          <label htmlFor="name">Product Name</label>
           <input
             placeholder="Enter Product Name"
             id="name"
@@ -51,7 +70,7 @@ function ProductForm({ type = "Add", data }) {
           />
         </div>
         <div>
-          <label>Category</label>
+          <label htmlFor="category">Category</label>
           <input
             placeholder="Enter Category"
             id="category"
@@ -61,7 +80,7 @@ function ProductForm({ type = "Add", data }) {
           />
         </div>
         <div>
-          <label>Short Description</label>
+          <label htmlFor="shortDesc">Short Description</label>
           <textarea
             placeholder="Enter Short Description"
             id="shortDesc"
@@ -80,20 +99,32 @@ function ProductForm({ type = "Add", data }) {
             defaultValue={""}
             rows={12}
             required
-            onChange={(e) => {
-              console.log(e.target.value.trim());
-            }}
           />
         </div>
-        <div className={classes.files}>
-          <label>Upload images (4 images)</label>
+        <div>
+          <label htmlFor="price">Price</label>
           <input
+            placeholder="Enter Price"
+            type="number"
+            id="price"
+            name="price"
+            defaultValue={""}
+            step={1}
+            required
+          />
+        </div>
+
+        <div className={classes.files}>
+          <label htmlFor="file">Upload images (4 images)</label>
+          <input
+            id="file"
             type="file"
             accept="image/*"
             multiple
             onChange={handlePickFiles}
           />
         </div>
+
         <div>
           <button className="btn">Submit</button>
           {errMsg && <span className={classes.err}>{errMsg}</span>}
