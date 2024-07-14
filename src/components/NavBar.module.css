@@ -1,6 +1,7 @@
 .navContainer {
   background-color: #00695c;
   color: #fff;
+  font-style: italic;
 }
 
 .navbar {
@@ -33,7 +34,6 @@
 }
 
 .navbar button:hover {
-  cursor: pointer;
   color: #ffeb3b;
 }
 

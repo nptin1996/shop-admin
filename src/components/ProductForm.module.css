@@ -1,0 +1,84 @@
+.containerProduct {
+  width: 800px;
+  margin: 4rem auto;
+  padding: 2rem;
+}
+.containerProduct h3 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-style: italic;
+  font-weight: 500;
+  color: #868e96;
+  font-size: 24px;
+}
+.form {
+  position: relative;
+}
+
+.form label {
+  font-weight: 500;
+}
+
+.form input,
+.form textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid #b1b2b8;
+  padding: 1rem;
+  font-size: 16px;
+  margin: 0.5rem 0 1rem 0;
+  outline: none;
+}
+
+.form input::placeholder,
+.form textarea::placeholder {
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.form input:focus,
+.form textarea:focus {
+  border: 1px solid #333;
+}
+
+.form button {
+  padding: 10px 1rem;
+  background-color: #617ff8;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.form button:hover {
+  background-color: #91a7ff;
+}
+
+.files input {
+  width: inherit;
+  border: none;
+  padding: 0;
+}
+
+.files input:focus {
+  border: none;
+}
+
+.files input::file-selector-button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  padding: 0.5em;
+  border: 1px solid #b1b2b8;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+
+.loader {
+  bottom: 0;
+  right: 0;
+}
+
+.err {
+  color: #fa5252;
+  font-style: italic;
+  margin-left: 1rem;
+}

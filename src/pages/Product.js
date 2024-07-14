@@ -1,5 +1,11 @@
+import ProductForm from "../components/ProductForm";
+
 const Product = () => {
-  return <div></div>;
+  return (
+    <div>
+      <ProductForm />
+    </div>
+  );
 };
 
 export default Product;

@@ -50,8 +50,8 @@ function AuthForm(props) {
     <>
       <NavBar />
       <div className="container">
-        <form className={classes.authForm} onSubmit={handleSubmit}>
-          {loading && <div class={classes.loader}></div>}
+        <form className={`card ${classes.authForm}`} onSubmit={handleSubmit}>
+          {loading && <div className={`loader ${classes.loader}`} />}
           {msg && <p className={classes.authMsg}>{msg}</p>}
           <h3>Login</h3>
           <ul>
@@ -68,7 +68,7 @@ function AuthForm(props) {
               />
             </li>
           </ul>
-          <button>Submit</button>
+          <button className="btn">Submit</button>
         </form>
       </div>
     </>
