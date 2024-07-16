@@ -15,16 +15,15 @@ function ProductForm({ type = "Add", data }) {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrMsg("");
+    setSubmitting(true);
     try {
-      e.preventDefault();
-      setErrMsg("");
-      setSubmitting(true);
       if (type === "Add" && (images.length === 0 || images.length > 4)) {
         return setErrMsg("Images không thể trống, chọn tối đa 4.");
       }
       const fd = new FormData(e.target);
       images.forEach((i) => fd.append("images", i));
-
       const res = await fetch(
         `${process.env.REACT_APP_API_URL}/product${
           type === "Edit" ? `/${data._id}` : ""
@@ -37,15 +36,14 @@ function ProductForm({ type = "Add", data }) {
       );
 
       if (res.ok) return navigate("/product");
-
       if (res.status === 401 || res.status === 403) {
         logout();
         alert("Đăng nhập và thử lại!");
         return navigate("/login");
       }
-      const data = await res.json();
-      if (data.message) {
-        return setErrMsg(data.message);
+      const dataR = await res.json();
+      if (dataR.message) {
+        return setErrMsg(dataR.message);
       }
       throw new Error();
     } catch (err) {
@@ -93,7 +91,7 @@ function ProductForm({ type = "Add", data }) {
         <div>
           <label htmlFor="longDesc">Long Description</label>
           <textarea
-            placeholder="Enter Long Description, ngăn cách các dòng bằng ký tự  /n/"
+            placeholder="Enter Long Description, ngăn cách bằng Enter xuống dòng"
             id="longDesc"
             name="longDesc"
             defaultValue={""}
@@ -109,7 +107,21 @@ function ProductForm({ type = "Add", data }) {
             id="price"
             name="price"
             defaultValue={""}
+            min={1}
             step={1}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="count">Count</label>
+          <input
+            placeholder="Enter Count"
+            type="number"
+            id="count"
+            name="count"
+            defaultValue={""}
+            // min={0}
+            // step={1}
             required
           />
         </div>

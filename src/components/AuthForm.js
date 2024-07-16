@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../store/context";
 import NavBar from "./NavBar";
 import classes from "./AuthForm.module.css";
-function AuthForm(props) {
+function AuthForm() {
   const { login } = useContext(Context);
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
@@ -35,14 +35,14 @@ function AuthForm(props) {
         return navigate("/");
       }
       if (dataRes.message) {
-        setLoading(false);
         return setMsg(dataRes.message);
       }
       throw new Error();
     } catch (err) {
       console.log(err);
-      setLoading(false);
       setMsg("Login Failed!");
+    } finally {
+      setLoading(false);
     }
   };
 
