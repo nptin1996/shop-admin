@@ -1,8 +1,13 @@
+import { useRouteError } from "react-router-dom";
+import NavBar from "../components/NavBar";
 function Error() {
+  const error = useRouteError();
+  console.log(error);
   return (
-    <div className="container">
-      <h1>Not Found</h1>
-    </div>
+    <>
+      <NavBar />
+      <div>Not Found</div>
+    </>
   );
 }
 
