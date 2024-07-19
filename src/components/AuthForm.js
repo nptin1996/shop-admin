@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../store/context";
 import NavBar from "./NavBar";
 import classes from "./AuthForm.module.css";
+import { fetchData } from "../function";
 function AuthForm() {
   const { login } = useContext(Context);
   const [msg, setMsg] = useState("");
@@ -17,17 +18,7 @@ function AuthForm() {
     const dataSubmit = Object.fromEntries(fd.entries());
     console.log(dataSubmit);
     try {
-      const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/auth/login?mode=admin`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          method: "POST",
-          credentials: "include",
-          body: JSON.stringify(dataSubmit),
-        }
-      );
+      const res = await fetchData("auth/login?mode=admin", "POST", dataSubmit);
       const dataRes = await res.json();
       console.log(dataRes);
       if (res.ok) {

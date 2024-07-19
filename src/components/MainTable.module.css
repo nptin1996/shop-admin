@@ -1,0 +1,82 @@
+.tableContainer {
+  margin: 2rem 1rem;
+  padding: 1.5rem;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.title h3 {
+  color: #868e96;
+  font-weight: 500;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #adb5bd;
+  font-size: 14px;
+}
+
+.table tr {
+  border: 1px solid #adb5bd;
+}
+
+.head th {
+  font-weight: 600;
+  text-align: start;
+  padding: 10px;
+  position: relative;
+}
+
+.head th::after {
+  display: block;
+  content: "";
+  width: 1px;
+  height: 20px;
+  background-color: #adb5bd;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.head th:first-child:after {
+  display: none;
+}
+
+.body td {
+  padding: 10px;
+  padding-right: 0;
+}
+
+.tableContainer button {
+  cursor: pointer;
+  padding: 6px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.title button {
+  border: 1px solid #40c057;
+  color: #40c057;
+}
+
+.body button:first-child {
+  border: 1px dashed #fa5252;
+  color: #fa5252;
+}
+
+.body button:last-child {
+  border: 1px dashed #be4bdb;
+  color: #be4bdb;
+  margin-left: 0.5rem;
+}
+
+.message {
+  color: #ff6b6b;
+  font-style: italic;
+}
