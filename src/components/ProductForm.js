@@ -10,7 +10,6 @@ function ProductForm({ type = "Add", data }) {
   const [submitting, setSubmitting] = useState(false);
   const { logout } = useContext(Context);
   const navigate = useNavigate();
-
   const handlePickFiles = (e) => {
     setImages(Array.from(e.target.files));
   };
@@ -62,7 +61,7 @@ function ProductForm({ type = "Add", data }) {
             placeholder="Enter Product Name"
             id="name"
             name="name"
-            defaultValue={""}
+            defaultValue={type === "Edit" ? data.name : ""}
             required
           />
         </div>
@@ -72,7 +71,7 @@ function ProductForm({ type = "Add", data }) {
             placeholder="Enter Category"
             id="category"
             name="category"
-            defaultValue={""}
+            defaultValue={type === "Edit" ? data.category : ""}
             required
           />
         </div>
@@ -82,7 +81,7 @@ function ProductForm({ type = "Add", data }) {
             placeholder="Enter Short Description"
             id="shortDesc"
             name="shortDesc"
-            defaultValue={""}
+            defaultValue={type === "Edit" ? data.shortDesc : ""}
             rows={4}
             required
           />
@@ -93,7 +92,7 @@ function ProductForm({ type = "Add", data }) {
             placeholder="Enter Long Description, ngăn cách bằng Enter xuống dòng"
             id="longDesc"
             name="longDesc"
-            defaultValue={""}
+            defaultValue={type === "Edit" ? data.longDesc : ""}
             rows={12}
             required
           />
@@ -105,7 +104,7 @@ function ProductForm({ type = "Add", data }) {
             type="number"
             id="price"
             name="price"
-            defaultValue={""}
+            defaultValue={type === "Edit" ? data.price : ""}
             min={1}
             step={1}
             required
@@ -118,7 +117,7 @@ function ProductForm({ type = "Add", data }) {
             type="number"
             id="count"
             name="count"
-            defaultValue={""}
+            defaultValue={type === "Edit" ? data.count : ""}
             min={0}
             step={1}
             required

@@ -1,4 +1,6 @@
 import MainTable from "../components/MainTable";
+import { useState, useContext } from "react";
+import { Context } from "../store/context";
 import { json, useLoaderData, useNavigate, redirect } from "react-router-dom";
 import {
   fetchData,
@@ -6,9 +8,35 @@ import {
   formatPrice,
   getLocalStorageUser,
 } from "../function";
+
 const Product = () => {
   const products = useLoaderData();
+  const [prodList, setProdList] = useState(products || []);
+  const { logout } = useContext(Context);
+
   const navigate = useNavigate();
+  const handleDelete = async (productId) => {
+    try {
+      if (window.confirm("Bạn có muốn xóa sản phẩm?")) {
+        const res = await fetchData(`product/${productId}`, "DELETE", null);
+        if (res.ok) {
+          setProdList((state) => state.filter((p) => p._id !== productId));
+          return alert("DELETE SUCCESS!");
+        }
+        if (res.status === 401 || res.status === 403) {
+          logout();
+          return navigate("/login");
+        }
+        const data = await res.json();
+        if (data.message) return alert(data.message);
+        throw new Error();
+      } else {
+        return;
+      }
+    } catch {
+      alert("Không thể xóa sản phảm lúc này");
+    }
+  };
   return (
     <MainTable
       head={["ID", "Name", "Price", "Image", "Category", "Count", "Edit"]}
@@ -16,7 +44,7 @@ const Product = () => {
       action={true}
       fnAction={() => navigate("add")}
     >
-      {products.map((product) => {
+      {prodList.map((product) => {
         return (
           <tr key={product._id}>
             <td>{product._id}</td>
@@ -28,8 +56,18 @@ const Product = () => {
             <td>{product.category}</td>
             <td>{product.count}</td>
             <td>
-              <button className="btn btn-green">Update</button>
-              <button className="btn btn-red">Delete</button>
+              <button
+                className="btn btn-green"
+                onClick={() => navigate(`edit/${product._id}`)}
+              >
+                Update
+              </button>
+              <button
+                className="btn btn-red"
+                onClick={() => handleDelete(product._id)}
+              >
+                Delete
+              </button>
             </td>
           </tr>
         );
