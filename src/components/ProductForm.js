@@ -2,6 +2,7 @@ import classes from "./ProductForm.module.css";
 import { useState, useContext } from "react";
 import { Context } from "../store/context";
 import { useNavigate } from "react-router-dom";
+import { getUrl } from "../function";
 
 function ProductForm({ type = "Add", data }) {
   const [images, setImages] = useState([]);
@@ -25,9 +26,7 @@ function ProductForm({ type = "Add", data }) {
       const fd = new FormData(e.target);
       images.forEach((i) => fd.append("images", i));
       const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/product${
-          type === "Edit" ? `/${data._id}` : ""
-        }`,
+        getUrl(`product${type === "Edit" ? `/${data._id}` : ""}`),
         {
           method: type === "Edit" ? "PUT" : "POST",
           body: fd,
@@ -120,8 +119,8 @@ function ProductForm({ type = "Add", data }) {
             id="count"
             name="count"
             defaultValue={""}
-            // min={0}
-            // step={1}
+            min={0}
+            step={1}
             required
           />
         </div>

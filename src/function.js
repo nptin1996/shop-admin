@@ -11,7 +11,7 @@ export function formatPrice(price) {
     }
   }
   // Kết hợp các phần tử của mảng thành một chuỗi
-  return formattedPrice.join("") + " VND";
+  return formattedPrice.join("");
 }
 
 // Hàm localStorage

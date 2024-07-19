@@ -1,6 +1,6 @@
 .navContainer {
   background-color: #00695c;
-  color: #fff;
+  color: #f6f5f5;
   font-style: italic;
 }
 
@@ -8,12 +8,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
 }
 
 .navbar h2 {
   font-size: 20px;
-  border: double #fff;
+  border: double #f6f5f5;
   padding: 12px;
   font-weight: 500;
 }
@@ -26,22 +25,22 @@
 .navbar a {
   text-decoration: none;
   font-weight: 400;
-  color: #fff;
+  color: #f6f5f5;
 }
 .navbar button {
   font-style: italic;
-  color: #fff;
+  color: #f6f5f5;
 }
 
 .navbar button:hover {
-  color: #ffeb3b;
+  color: #ffbc28;
 }
 
 .navbar a:hover {
   cursor: pointer;
-  color: #ffeb3b;
+  color: #ffbc28;
 }
 
 a.active {
-  color: #ffeb3b;
+  color: #ffbc28;
 }

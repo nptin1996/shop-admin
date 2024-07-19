@@ -6,7 +6,7 @@ function Root() {
   return (
     <>
       <NavBar />
-      <div className="container">
+      <div className="container bg-body min-height">
         <Outlet />
       </div>
     </>

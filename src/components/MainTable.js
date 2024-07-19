@@ -4,25 +4,25 @@ import classes from "./MainTable.module.css";
 function MainTable({
   head,
   title,
-  action = true,
+  action = false,
   actionTxt = "Add New",
   fnAction,
   children,
 }) {
   let actionData = useActionData();
   return (
-    <div className={classes.tableContainer}>
+    <div className={`card ${classes.tableContainer}`}>
       <div className={classes.title}>
         <h3>{title}</h3>
-        {actionData?.message && (
-          <span className={classes.message}>{actionData.message}</span>
-        )}
+
         {action && (
-          <button onClick={fnAction ? fnAction : null}>{actionTxt}</button>
+          <button className="btn" onClick={fnAction ? fnAction : null}>
+            {actionTxt}
+          </button>
         )}
       </div>
       <table className={classes.table}>
-        <thead className={classes.head}>
+        <thead>
           <tr>
             {head.map((h, i) => (
               <th key={i}>{h}</th>

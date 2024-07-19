@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { Context } from "../store/context";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import classes from "./NavBar.module.css";
 function NavBar() {
   const { user, logout } = useContext(Context);
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
@@ -11,7 +12,10 @@ function NavBar() {
         method: "POST",
         credentials: "include",
       });
-      if (res.ok) return logout();
+      if (res.ok) {
+        logout();
+        return navigate("/login");
+      }
       throw new Error();
     } catch (err) {
       console.log(err);

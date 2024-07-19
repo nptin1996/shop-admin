@@ -40,7 +40,7 @@ function AuthForm() {
   return (
     <>
       <NavBar />
-      <div className="container">
+      <div className="container bg-body min-height">
         <form className={`card ${classes.authForm}`} onSubmit={handleSubmit}>
           {loading && <div className={`loader ${classes.loader}`} />}
           {msg && <p className={classes.authMsg}>{msg}</p>}

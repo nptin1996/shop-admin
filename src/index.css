@@ -9,19 +9,27 @@
 body {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
-  /* font-style: italic; */
   font-size: 16px;
   background-color: #fff;
   color: #495057;
 }
 
+.min-height {
+  min-height: 90vh;
+}
+
 .container {
   width: 1320px;
   margin: auto;
+  padding: 1.5rem;
+}
+
+.bg-body {
+  background-color: #f2f4f8;
 }
 
 .card {
-  box-shadow: 0 0 10px 1px #b1b2b8;
+  box-shadow: 0 1px 2px 1px #ced4da;
   border-radius: 4px;
 }
 
@@ -30,6 +38,31 @@ body {
   font-size: 16px;
   background-color: inherit;
   cursor: pointer;
+}
+.btn-green {
+  padding: 8px 10px;
+  text-align: center;
+  background-color: #22ca80;
+  color: #fff;
+}
+
+.btn-green:hover {
+  background-color: #24cca4;
+}
+.btn-green:active {
+  background-color: #5adcb4;
+}
+.btn-red {
+  background-color: #ff4f70;
+  padding: 8px 10px;
+  text-align: center;
+  color: #fff;
+}
+.btn-red:hover {
+  background-color: #ff7894;
+}
+.btn-red:active {
+  background-color: #fd95aa;
 }
 
 /* HTML: <div class="loader"></div> */

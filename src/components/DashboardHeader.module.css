@@ -1,0 +1,50 @@
+.headContainer {
+  margin: 1rem 0 2rem 0;
+}
+.headContainer h3 {
+  color: #868e96;
+  font-weight: 500;
+  margin: 1rem 0;
+}
+.headContainer h2 {
+  font-weight: 600;
+}
+
+.infoBoard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.info {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 1.5;
+  border-right: 1px solid #dee2e6;
+  background-color: #fff;
+}
+.info:last-child {
+  border-right: none;
+}
+.info p {
+  color: #adb5bd;
+  font-weight: 500;
+  font-size: 15px;
+}
+.icon svg {
+  stroke: #adb5bd;
+}
+.icon p {
+  font-size: 26px;
+}
+.total {
+  position: relative;
+}
+.total span {
+  font-size: 16px;
+  position: absolute;
+  top: 0;
+
+  transform: translate(20%, 0);
+}
