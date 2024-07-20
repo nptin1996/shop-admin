@@ -13,6 +13,7 @@ export async function loader({ params }) {
   try {
     const productId = params.productId;
     const res = await fetchData(`product/${productId}?mode=admin`, "GET", null);
+    if (res.status === 401 || res.status === 403) return redirect("/logout");
     if (!res.ok) throw new Error();
     const data = await res.json();
     return data;

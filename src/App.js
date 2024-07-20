@@ -29,9 +29,9 @@ const router = createBrowserRouter([
         element: <EditProduct />,
         loader: productLoader,
       },
-      { path: "logout", element: <Logout /> },
     ],
   },
+  { path: "/logout", element: <Logout /> },
   { path: "/login", element: <Login /> },
 ]);
 function App() {

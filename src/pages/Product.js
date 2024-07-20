@@ -83,6 +83,7 @@ export async function loader() {
   if (user.type !== "admin") return redirect("/");
   try {
     const res = await fetchData("product?mode=admin", "GET", null);
+    if (res.status === 401 || res.status === 403) return redirect("/logout");
     if (!res.ok) throw new Error();
     const data = await res.json();
     return data;
