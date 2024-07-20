@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState } from "react";
 import { getLocalStorageUser } from "../function";
 
 export const Context = createContext({
@@ -30,7 +30,3 @@ export default function ContextProvider(props) {
 
   return <Context.Provider value={ctxValue}>{props.children}</Context.Provider>;
 }
-
-// export function useContextUser() {
-//   return useContext(Context);
-// }

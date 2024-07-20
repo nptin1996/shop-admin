@@ -1,0 +1,70 @@
+.title {
+  font-weight: 600;
+}
+
+.chatContainer {
+  background-color: #fff;
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 75vh;
+}
+.chatContainer ul {
+  list-style: none;
+  overflow-y: auto;
+}
+
+.listUser {
+  /* padding: 1rem; */
+  border-right: 1px solid #dee2e6;
+}
+
+.mainChat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.mainChat form {
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  border-top: 1px solid #dee2e6;
+}
+
+.mainChat input[type="text"] {
+  flex: 1;
+  border: none;
+  padding-left: 1rem;
+  font-size: 16px;
+  outline: none;
+}
+
+.mainChat input::placeholder {
+  font-style: italic;
+  font-weight: 500;
+  color: #868e96;
+}
+
+.mainChat button {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border: none;
+  outline: none;
+  border-radius: 100%;
+  background-color: #4dabf7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainChat button:hover {
+  cursor: pointer;
+  background-color: #1c7ed6;
+}
+
+.mainChat svg {
+  width: 20px;
+  fill: #fff;
+}

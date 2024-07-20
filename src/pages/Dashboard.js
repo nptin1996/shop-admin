@@ -1,5 +1,5 @@
 import { fetchData, formatPrice } from "../function";
-import { json, useLoaderData } from "react-router-dom";
+import { json, useLoaderData, redirect } from "react-router-dom";
 import DashboardHeader from "../components/DashboardHeader";
 import MainTable from "../components/MainTable";
 function Dashboard() {
@@ -53,6 +53,7 @@ export default Dashboard;
 export async function loader() {
   try {
     const res = await fetchData("order/admin", "GET", null);
+    if (res.status === 401 || res.status === 403) return redirect("/logout");
     if (!res.ok) throw new Error();
     const data = await res.json();
     return data;
