@@ -15,7 +15,8 @@ function Root() {
 
 export default Root;
 
-export function loader() {
+export function loader({ context }) {
+  console.log(context.user);
   const user = getLocalStorageUser();
   if (!user) return redirect("/login");
   return null;

@@ -15,7 +15,11 @@ const router = createBrowserRouter([
     element: <Root />,
     loader: authLoader,
     children: [
-      { index: true, element: <Dashboard />, loader: dashboardLoader },
+      {
+        index: true,
+        element: <Dashboard />,
+        loader: dashboardLoader,
+      },
       { path: "product", element: <Product />, loader: productsLoader },
       { path: "product/add", element: <AddProduct /> },
       {
