@@ -7,7 +7,7 @@ import Product, { loader as productsLoader } from "./pages/Product";
 import Error from "./pages/Error";
 import AddProduct from "./pages/AddProduct";
 import EditProduct, { loader as productLoader } from "./pages/EditProduct";
-import ChatPage from "./pages/Chat";
+import ChatPage, { loader as chatsLoader } from "./pages/Chat";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         element: <Dashboard />,
         loader: dashboardLoader,
       },
-      { path: "chat", element: <ChatPage /> },
+      { path: "chat", element: <ChatPage />, loader: chatsLoader },
       { path: "product", element: <Product />, loader: productsLoader },
       { path: "product/add", element: <AddProduct /> },
       {

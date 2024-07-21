@@ -1,4 +1,4 @@
-import { useLoaderData, json } from "react-router-dom";
+import { useLoaderData, json, redirect } from "react-router-dom";
 import { fetchData } from "../function";
 import ProductForm from "../components/ProductForm";
 
