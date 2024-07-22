@@ -55,8 +55,14 @@ function ChatBox() {
         return;
       }
       throw new Error();
-    } catch (err) {
-      console.log(err);
+    } catch {
+      setPickedChat((state) => {
+        const newChatList = [
+          ...state.chatList,
+          { type: "error", content: "Lỗi khi gửi chat" },
+        ];
+        return { ...state, chatList: newChatList };
+      });
     }
   };
 
