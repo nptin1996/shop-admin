@@ -1,20 +1,20 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { Context } from "../store/context";
 import { useLoaderData, useNavigate } from "react-router-dom";
-import classes from "./ChatBox.module.css";
-import IconSend from "./UI/IconSend";
-import { io } from "socket.io-client";
-import Avatar from "./UI/businessman.png";
 import { fetchData } from "../function";
+import { io } from "socket.io-client";
+import IconSend from "./UI/IconSend";
+import Avatar from "./UI/businessman.png";
+import classes from "./ChatBox.module.css";
 function ChatBox() {
   const dataChat = useLoaderData();
   const [chatlist, setChatList] = useState(dataChat);
   const [pickedChat, setPickedChat] = useState(null);
   const { logout } = useContext(Context);
   const navigate = useNavigate();
-  console.log(pickedChat);
+  const chatContentRef = useRef(null);
   const handlePickChat = (chat) => {
-    setPickedChat(chat);
+    setPickedChat({ ...chat });
   };
 
   const handleSendChat = async function (e) {
@@ -43,14 +43,15 @@ function ChatBox() {
           ];
           return { ...state, chatList: newChatList };
         });
-        setChatList((state) => {
-          const chat = state.find((ele) => ele.chatId === dataSend.chatId);
-          const newChatList = [
-            ...chat.chatList,
-            { type: dataSend.type, content: dataSend.content },
-          ];
-          chat.chatList = newChatList;
-          return state;
+        setChatList((prevState) => {
+          // Tìm phần tử có chatId = id
+          const updatedChatState = prevState.map((chat) => {
+            if (chat.chatId === dataSend.chatId) {
+              return { ...chat, chatList: [...chat.chatList, dataSend] };
+            }
+            return chat;
+          });
+          return updatedChatState;
         });
         return;
       }
@@ -63,6 +64,8 @@ function ChatBox() {
         ];
         return { ...state, chatList: newChatList };
       });
+    } finally {
+      e.target.reset();
     }
   };
 
@@ -81,7 +84,7 @@ function ChatBox() {
             const updatedChat = { ...updatedChats[chatIndex] };
             updatedChat.chatList = [...updatedChat.chatList, data.chatData];
             updatedChats.splice(chatIndex, 1);
-            // Đưa object đó lên đầu mảng
+            // Đưa object lên đầu mảng
             return [updatedChat, ...updatedChats];
           }
           const newChat = { chatId: data.chatId, chatList: [data.chatData] };
@@ -104,6 +107,10 @@ function ChatBox() {
       socket.disconnect(); // Ngắt kết nối socket
     };
   }, []);
+
+  useEffect(() => {
+    chatContentRef.current.scrollTop = chatContentRef.current.scrollHeight;
+  }, [pickedChat]);
 
   return (
     <>
@@ -136,6 +143,7 @@ function ChatBox() {
           <ul
             className={classes.chatContent}
             key={pickedChat ? pickedChat.chatId : "null"}
+            ref={chatContentRef}
           >
             {pickedChat &&
               pickedChat.chatList.map((chat, i) => (
@@ -150,6 +158,7 @@ function ChatBox() {
                   )}
                   {chat.type === "client" && <p>Client: {chat.content}</p>}
                   {chat.type === "admin" && <p>You: {chat.content}</p>}
+                  {chat.type === "error" && <p>{chat.content}</p>}
                 </li>
               ))}
           </ul>
