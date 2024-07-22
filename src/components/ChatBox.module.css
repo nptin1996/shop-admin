@@ -29,7 +29,7 @@
   padding: 15px;
   word-wrap: break-word;
   border: 1px solid #fff;
-  border-bottom: 1px solid none;
+  border-bottom: 1px solid #dee2e6;
   border-radius: 4px;
 }
 .listUser li:hover {
@@ -38,6 +38,9 @@
 }
 
 .listUser li:active {
+  border: 1px solid #22ca80;
+}
+.listUser .picked {
   border: 1px solid #22ca80;
 }
 
