@@ -34,8 +34,7 @@ export function getLocalStorageUser() {
 }
 
 export function getUrl(pathUrl) {
-  const url = new URL(`${process.env.REACT_APP_API_URL}/${pathUrl}`);
-  return url;
+  return new URL(`${process.env.REACT_APP_API_URL}/${pathUrl}`);
 }
 
 export async function fetchData(pathUrl, method, body) {
