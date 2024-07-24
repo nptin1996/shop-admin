@@ -45,7 +45,7 @@ export async function fetchData(pathUrl, method, body) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: method === "GET" || method === "DELETE" ? null : JSON.stringify(body),
+    body: body ? JSON.stringify(body) : null,
     credentials: "include",
   });
 }

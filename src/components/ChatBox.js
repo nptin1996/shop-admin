@@ -29,7 +29,7 @@ function ChatBox() {
         chatId: pickedChat.chatId,
         content,
       };
-      console.log(dataSend);
+
       const res = await fetchData("chat/admin", "POST", dataSend);
       if (res.status === 401 || res.status === 403) {
         logout();
@@ -79,7 +79,6 @@ function ChatBox() {
             (chat) => chat.chatId === data.chatId
           );
           if (chatIndex !== -1) {
-            // Sao chép các dữ liệu tránh update state bị lỗi mutating
             const updatedChats = [...prevChats];
             const updatedChat = { ...updatedChats[chatIndex] };
             updatedChat.chatList = [...updatedChat.chatList, data.chatData];
@@ -98,6 +97,24 @@ function ChatBox() {
           } else {
             return state;
           }
+        });
+      }
+      if (data.action === "Client Clear Chat") {
+        setPickedChat((state) => {
+          if (pickedChat && pickedChat.chatId === data.chatId) {
+            const newChat = { ...state };
+            newChat.chatList = [];
+            return newChat;
+          } else {
+            return state;
+          }
+        });
+        setChatList((prevChats) => {
+          const newList = [...prevChats];
+          const chat = newList.find((ele) => (ele.chatId = data.chatId));
+          if (!chat) return prevChats;
+          chat.chatList = [];
+          return newList;
         });
       }
     });
