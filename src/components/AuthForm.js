@@ -16,7 +16,6 @@ function AuthForm() {
     setLoading(true);
     const fd = new FormData(e.target);
     const dataSubmit = Object.fromEntries(fd.entries());
-    console.log(dataSubmit);
     try {
       const res = await fetchData("auth/login?mode=admin", "POST", dataSubmit);
       const dataRes = await res.json();

@@ -45,6 +45,7 @@ function ProductForm({ type = "Add", data }) {
       }
       throw new Error();
     } catch (err) {
+      console.log(err);
       setErrMsg("Create product failed.");
     } finally {
       setSubmitting(false);
