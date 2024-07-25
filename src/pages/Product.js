@@ -51,7 +51,11 @@ const Product = () => {
             <td>{product.name}</td>
             <td>{formatPrice(product.price)}</td>
             <td>
-              <img src={getUrl(product.images[0])} alt={product.name} />
+              <img
+                src={getUrl(product.images[0])}
+                alt={product.name}
+                crossOrigin="anonymous"
+              />
             </td>
             <td>{product.category}</td>
             <td>{product.count}</td>
